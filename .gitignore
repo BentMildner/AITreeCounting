@@ -1,0 +1,10 @@
+.vscode-server/
+.vscode/
+.local/
+.ssh/
+.cache/
+__pycache__/
+venv/
+*.pyc
+storage/
+infhome
