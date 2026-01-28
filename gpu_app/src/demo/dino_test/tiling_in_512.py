@@ -3,7 +3,6 @@ import os
 
 img = cv2.imread("/storage/soltau/data/tiles_test_1024/tile_0_0.png")
 
-# Quadranten schneiden
 tiles = {
     "top_left": img[0:512, 0:512],
     "top_right": img[0:512, 512:1024],
@@ -11,7 +10,6 @@ tiles = {
     "bottom_right": img[512:1024, 512:1024]
 }
 
-# Speichern zum Testen
 output_path = "/storage/soltau/data/tiles_test_512/"
 os.makedirs(output_path, exist_ok=True)
 

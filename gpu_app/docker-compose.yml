@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  tree-ai:
+    build: .
+    runtime: nvidia
+    volumes:
+      - .:/gpu_app/app
+      - /storage/soltau:/storage/soltau
+    ports:
+      - "8503:8503"
+      - "5000:5000"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all

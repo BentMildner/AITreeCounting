@@ -9,7 +9,6 @@ checkpoint = "/storage/soltau/models/groundingdino/weights/groundingdino_swinb_c
 OUTPUT_DIR = "/storage/soltau/data/results"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# Modell laden
 model = load_model(config_file, checkpoint)
 
 # Inputs
@@ -26,7 +25,6 @@ TEXT_PROMPTS = [
 BOX_THRESHOLD = 0.18
 TEXT_THRESHOLD = 0.0
 
-# --- LOOP ÜBER BILDER ---
 for size_name, path in image_paths.items():
 
     if not os.path.exists(path):
@@ -63,9 +61,8 @@ for size_name, path in image_paths.items():
     boxes = torch.cat(all_boxes, dim=0)
     logits = torch.cat(all_logits, dim=0)
 
-    # --- KLEINE BOXEN BEVORZUGEN ---
     areas = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])
-    mask = areas < 0.10   # <10% der Bildfläche
+    mask = areas < 0.10   
 
     boxes = boxes[mask]
     logits = logits[mask]

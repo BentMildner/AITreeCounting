@@ -1,3 +1,5 @@
+# Entry point for the Flask applicationwith routes
+
 from flask import Flask, jsonify
 from config import * 
 from pipeline import run_pipeline
@@ -29,6 +31,6 @@ def health():
     })
 
 
-# --- App starten ---
+# start flask application
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
