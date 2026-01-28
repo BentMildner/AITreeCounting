@@ -4,7 +4,8 @@ from tree_segmentation_service import TreeSegmentationService
 from geotools import save_dino_as_geojson, save_sam_as_geojson
 
 
-
+# Function for the whole pipeline to integrate as whole in the Flask app
+# uses the TreeSegmentationService class as input with initialized models
 def run_pipeline(service: TreeSegmentationService):
     logger.info(
         f"Environment prepared on GPU {GPU_ID} with "
@@ -25,7 +26,7 @@ def run_pipeline(service: TreeSegmentationService):
         output_dir=DINO_OUTPUT_DIR
     )
 
-    final_mask_np = None  # Default setzen
+    final_mask_np = None  
 
     if boxes is not None and len(boxes) > 0:
         masks_obj, final_mask_np = service.run_prediction_sam(
@@ -38,10 +39,8 @@ def run_pipeline(service: TreeSegmentationService):
     dino_geojson = os.path.join(DINO_OUTPUT_DIR, "detections.geojson")
     sam_geojson = os.path.join(SAM_OUTPUT_DIR, "masks.geojson") 
 
-    # DINO immer speichern (auch wenn 0)
     save_dino_as_geojson(boxes, INPUT_PATH, dino_geojson)
 
-    # SAM nur speichern, wenn Masken existieren
     if final_mask_np is not None:
         save_sam_as_geojson(final_mask_np, INPUT_PATH, sam_geojson)
     else:

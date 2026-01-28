@@ -12,12 +12,10 @@ IOU_THRESHOLD = 0.5
 # --------------------------------------
 
 
-import rasterio
 from shapely.geometry import shape
 import json
 import numpy as np
 
-IMAGE_PATH = "/storage/soltau/data/tiles/tile_0_0.tif"
 
 
 def load_geojson_boxes(path):

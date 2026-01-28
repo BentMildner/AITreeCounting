@@ -253,3 +253,17 @@ widgetsnbextension==4.0.15
 xarray==2025.6.1
 xyzservices==2025.11.0
 yapf==0.43.0
+# Basis KI
+torch>=2.0.0
+torchvision
+torchaudio
+
+# Segment Anything & Grounding DINO
+segment-anything
+git+https://github.com/IDEA-Research/GroundingDINO.git
+
+# Frontend & Tools
+streamlit
+opencv-python-headless
+rasterio
+geopandas

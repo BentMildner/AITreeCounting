@@ -4,7 +4,6 @@ import os
 # Das Bild ist 512x512 Pixel groß
 img = cv2.imread("/storage/soltau/data/tiles_test_512/top_left.png")
 
-# Quadranten in 256x256 schneiden
 tiles = {
     "upper_left_256": img[0:256, 0:256],
     "upper_right_256": img[0:256, 256:512],

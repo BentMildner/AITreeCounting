@@ -4,13 +4,11 @@ import os
 import leafmap.foliumap as leafmap
 import geopandas as gpd
 
-# --- Backend URL ---
+# backend server URL
 BACKEND_URL = "http://localhost:5000"
 
 from pathlib import Path
 
-DINO_TIF = Path("/storage/soltau/data/prototype_results/dino_output/campus_dino_georef.tif")
-SAM_TIF  = Path("/storage/soltau/data/prototype_results/sam_output/campus_mask_final.tif")
 
 
 st.set_page_config(layout="wide")
@@ -20,9 +18,7 @@ if "results_ready" not in st.session_state:
     st.session_state["results_ready"] = False
 
 
-# =========================================================
 # Health Check
-# =========================================================
 if st.button("Check Server Health"):
     try:
         response = requests.get(f"{BACKEND_URL}/health")
@@ -39,9 +35,7 @@ if st.button("Check Server Health"):
 
 st.divider()
 
-# =========================================================
 # Run Segmentation
-# =========================================================
 if st.button("Run Tree Segmentation"):
     try:
         with st.spinner("Running segmentation pipeline on GPU..."):
@@ -62,13 +56,12 @@ if st.button("Run Tree Segmentation"):
         st.error(f"Could not reach server: {e}")
 
 
-# =========================================================
+
 # Map Visualization 
-# =========================================================
 st.subheader("Segmentation Results")
 
 
-# Pfade zu den GeoJSON-Dateien
+# Paths to GeoJSON results
 DINO_GEOJSON = Path("/storage/soltau/data/prototype_results/dino_output/detections.geojson")
 SAM_GEOJSON  = Path("/storage/soltau/data/prototype_results/sam_output/masks.geojson")
 
