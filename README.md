@@ -55,7 +55,7 @@ streamlit run src/prototype/frontend/streamlit_app.py
 
 The Streamlit app visualizes segmentation results and allows downloading GeoJSON masks.
 
-    [!NOTE] The project is designed for GPU-enabled servers. CPU startup is not tested. Ensure input/output directories are correctly defined in config.py.
+    [!NOTE] Ensure input/output directories are correctly defined in config.py.
 
 🛠 Troubleshooting (Manual Installation)
 
