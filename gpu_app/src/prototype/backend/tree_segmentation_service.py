@@ -102,13 +102,12 @@ class TreeSegmentationService:
             phrases = [phrases[i] for i in filtered_indices]
             
             # Non-Maximum Suppression (NMS)
-            # iou_threshold 0.5 bedeutet: Wenn zwei Boxen zu 50% überlappen, bleibt nur die bessere
             if logits.dim() > 1:
                 scores = logits.max(dim=1).values
             else:
                 scores = logits
 
-            # NMS ausführen
+            # NMS execution
             nms_idx = ops.nms(boxes, scores, iou_threshold=0.20)
             
             boxes = boxes[nms_idx]
