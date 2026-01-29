@@ -1,3 +1,6 @@
+# File to evaluate DINO model outputs using IoU metric --> Overkill for this project but useful for future reference
+
+
 import json
 import numpy as np
 from pathlib import Path
@@ -7,7 +10,7 @@ from pathlib import Path
 GROUND_TRUTH = "/storage/soltau/data/model_outputs/dino_output/tile_0_0.json"
 PREDICTIONS = "/storage/soltau/data/prototype_results/dino_output/detections.geojson"
 
-IOU_THRESHOLD = 0.5
+IOU_THRESHOLD = 0.2
 
 # --------------------------------------
 
@@ -25,30 +28,30 @@ def load_geojson_boxes(path):
     boxes = []
 
     if "shapes" in geo:
-        features = geo["shapes"]
-    elif isinstance(geo, list):
-        features = geo
+        featurs = geo["shapes"]
     elif "features" in geo:
         features = geo["features"]
+    elif isinstance(geo, list):
+        featurs = geo
     else:
-        raise RuntimeError("Unknown GT format")
+        raise RuntimeError("Unknown annotation format")
 
-    for feat in features:
 
-        # labelme rectangles
+    for feat in featurs:
+
         if "points" in feat:
             pts = feat["points"]
             xs = [p[0] for p in pts]
             ys = [p[1] for p in pts]
-
-            x1, x2 = min(xs), max(xs)
-            y1, y2 = min(ys), max(ys)
-
+            
+            minx, maxx = min(xs), max(xs)
+            miny, maxy = min(ys), max(ys)
+        
         else:
-            geom = shape(feat["geometry"])
-            x1, y1, x2, y2 = geom.bounds
-
-        boxes.append([x1, y1, x2, y2])
+             geom = shape(feat["geometry"])
+             minx, miny, maxx, maxy = geom.bounds
+        
+        boxes.append([minx, miny, maxx, maxy])
 
     return np.array(boxes)
 
@@ -123,6 +126,8 @@ if __name__ == "__main__":
     gt = load_geojson_boxes(GROUND_TRUTH)
     preds = load_pred_boxes(PREDICTIONS)
 
+    print("GT sample:", gt[:3])
+    print("Pred sample:", preds[:3])   
     TP, FP, FN, p, r, f1 = evaluate(gt, preds)
 
     print("\n====== DINO Evaluation ======\n")
