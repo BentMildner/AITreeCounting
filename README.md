@@ -1,4 +1,5 @@
 TREE SEGMENTATION PROTOTYPE
+
 📖 About the Project
 
 This project is a prototype that addresses the challenge of detecting and segmenting trees automatically using AI models GroundingDINO and SamGeo2.
