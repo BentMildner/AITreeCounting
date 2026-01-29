@@ -3,11 +3,10 @@ CLONE THE REPOSITORY
 
 To get started, clone the repository to your local machine:
 
-git clone <REPO_URL>
+git clone https://github.com/BentMildner/AITreeCounting.git
 cd gpu_app
 
 
-Replace <REPO_URL> with the URL of the repository.
 
 ABOUT THE PROJECT
 
