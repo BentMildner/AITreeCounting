@@ -56,7 +56,7 @@ The Streamlit app visualizes segmentation results and allows downloading GeoJSON
 
     [!NOTE] The project is designed for GPU-enabled servers. CPU startup is not tested. Ensure input/output directories are correctly defined in config.py.
 
-## 🛠 Troubleshooting (Manual Installation)
+🛠 Troubleshooting (Manual Installation)
 If Docker doesn't work as expected, you can see all used packages for this project in the requirements.txt    
 
 🏗 Architecture & Data
