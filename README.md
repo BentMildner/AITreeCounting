@@ -57,7 +57,9 @@ The Streamlit app visualizes segmentation results and allows downloading GeoJSON
     [!NOTE] The project is designed for GPU-enabled servers. CPU startup is not tested. Ensure input/output directories are correctly defined in config.py.
 
 🛠 Troubleshooting (Manual Installation)
+
 If Docker doesn't work as expected, you can see all used packages for this project in the requirements.txt    
+
 
 🏗 Architecture & Data
 The Architecture
@@ -78,6 +80,7 @@ Input data is based on open-source data for Lower Saxony, focusing on the Leupha
 
     Source: LGN Open Geodata DOP https://ni-lgln-opengeodata.hub.arcgis.com/apps/lgln-opengeodata::digitales-orthophoto-dop/explore
 
+
 📈 Results & Limitations
 Results
 
@@ -94,6 +97,7 @@ Limitations
     False segmentation may occur in shadowed areas.
 
     Not all trees are detected in dense areas.
+
 
 Approaches for further Improvements:
 To enhance the perfomance, this are some possibilities to try out 
