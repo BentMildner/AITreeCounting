@@ -257,13 +257,3 @@ yapf==0.43.0
 torch>=2.0.0
 torchvision
 torchaudio
-
-# Segment Anything & Grounding DINO
-segment-anything
-git+https://github.com/IDEA-Research/GroundingDINO.git
-
-# Frontend & Tools
-streamlit
-opencv-python-headless
-rasterio
-geopandas

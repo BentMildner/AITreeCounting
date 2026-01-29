@@ -3,12 +3,29 @@ import requests
 import os
 import leafmap.foliumap as leafmap
 import geopandas as gpd
+from pathlib import Path
+
 
 # backend server URL
 BACKEND_URL = "http://localhost:5000"
 
-from pathlib import Path
+def geojson_download_button(path: Path, label: str):
+    # Only works if results are ready after pipeline run
+    if not st.session_state.get("results_ready", False):
+        st.button(label, disabled=True)
+        return
 
+    if not path.exists():
+        st.warning(f"{path.name} not found")
+        return
+
+    with open(path, "rb") as f:
+        st.download_button(
+            label=label,
+            data=f,
+            file_name=path.name,
+            mime="application/geo+json"
+        )
 
 
 st.set_page_config(layout="wide")
@@ -79,3 +96,25 @@ if SAM_GEOJSON.exists():
 
 # Map in Streamlit einbetten
 m.to_streamlit(height=700)
+
+
+# Download Buttons
+st.subheader("Download Results")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    geojson_download_button(
+        DINO_GEOJSON,
+        "Download DINO Bounding Boxes (GeoJSON)"
+    )
+
+with col2:
+    geojson_download_button(
+        SAM_GEOJSON,
+        "Download SAM Masks (GeoJSON)"
+    )
+
+
+
+
